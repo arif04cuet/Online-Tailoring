@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
+body * {
+  font-family: 'Roboto', 'Arial', sans-serif !important;
+}
+
+.nav-tabs>a,
+.nav-tabs>a.active,
+.nav-tabs>a:focus,
+.nav-tabs>a:hover {
+  border: 0;
+}
+
+.nav-tabs>li>a,
+.nav-tabs>li>a.active,
+.nav-tabs>li>a:focus,
+.nav-tabs>li>a:hover {
+  border: 1px solid red;
+  border-color: transparent !important;
+}
+
+#steps a.nav-link {
+  color: #ccc;
+}
+
+#steps a.nav-link.active {
+  color: #8581ff !important;
+}
+
+#steps .nav-tabs--vertical {
+  border-right: 0 !important;
+}
+
+a.nav-item {
+  color: #ccc;
+}
+
+a.nav-item.active {
+  border-bottom: 2px solid #8581ff !important;
+  color: #8581ff !important;
+}
+
+.nav-tabs--vertical {
+  border-bottom: none;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.nav-tabs--left {
+  margin: 0 15px;
+}
+
+.nav-tabs--left .nav-item+.nav-item {
+  margin-top: 0.25rem;
+}
+
+.nav-tabs--left .nav-link {
+  transition: border-color 0.125s ease-in;
+  white-space: nowrap;
+}
+
+.nav-tabs--left .nav-link:hover {
+  background-color: #f7f7f7;
+  border-color: transparent;
+}
+
+.nav-tabs--left .nav-link.active {
+  border-bottom-color: #ddd;
+  border-right-color: #fff;
+  border-bottom-left-radius: 0.25rem;
+  border-top-right-radius: 0;
+  margin-right: -1px;
+}
+
+.nav-tabs--left .nav-link.active:hover {
+  background-color: #fff;
+  border-color: #0275d8 #fff #0275d8 #0275d8;
+}
