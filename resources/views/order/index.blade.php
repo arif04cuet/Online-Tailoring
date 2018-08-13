@@ -47,6 +47,14 @@
                                 <b>Lining</b>
                                 <div class="lining"></div>
                             </div>
+
+                            <div>
+                                
+                                <b>Styles</b>
+                                <div class="styles"></div>
+                            </div>
+
+
                         </div>
                     </li>
                 </ul>
