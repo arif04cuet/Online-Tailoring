@@ -19,6 +19,7 @@ Route::group([
     $router->resource('/linings', 'LiningController');
     $router->resource('/styles', 'StyleController');
     $router->resource('/fabric_filter', 'FabricFilterController');
+    $router->resource('/lining_filter', 'LiningFilterController');
 
     // Sales
     $router->resource('/customers', 'CustomerController');

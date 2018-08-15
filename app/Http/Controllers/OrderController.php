@@ -9,6 +9,7 @@ use App\Product;
 use App\Customer;
 use App\Order;
 use App\FabricFilter;
+use App\LiningFilter;
 use App\Mail\OrderEmail;
 
 class OrderController extends Controller
@@ -23,6 +24,7 @@ class OrderController extends Controller
     {
         
             $orderData = $request->all();
+           
             $postCustomer = $orderData['customer'];
         
             // save customer   
@@ -135,6 +137,29 @@ class OrderController extends Controller
                 'composition'=>$composition,
                 'color'=>$color,
                 'pattern'=>$patterns,
+                'category'=>$catagory,
+            ];
+
+            if($requestData)
+            {
+                $collection = $product->$type();
+                foreach($requestData as $filter=>$val)
+                {
+                    if($val)
+                        $collection->where($filter.'_id',$val);
+                }
+                $collection = $collection->get();
+            }
+
+            $returnHTML->with('filters',$filters)->with('requestData',$requestData);
+        }
+
+        if($type == 'linings')
+        {
+            $requestData = $request->all();
+            $catagory = LiningFilter::where('type','category')->orderBy('title')->pluck('title','id');
+
+            $filters = [
                 'category'=>$catagory,
             ];
 

@@ -46,7 +46,7 @@
         $('body').on('change','.fabric_filters select',function(){
             $('#ajax_loader').show();
             var values = $('.fabric_filters select').serialize();
-            console.log(values);
+            
            
             targ = '#nav-fabric';
             product_id = $('input[name=product]:checked').val();;
@@ -103,7 +103,7 @@
             var id = parseInt($(this).attr('data-tab'));
             id++;
             var tab = 'tab'+id;
-            console.log(id);
+            
             $("ul.styles_subheadings_tabs").find('li#'+tab).click();
         });
 
@@ -235,7 +235,7 @@
         });
 
         $("ul.styles_subheadings_tabs .nav-item a").on('shown.bs.tab', function(e) {
-            console.log('ok');
+            
         });
 
     });

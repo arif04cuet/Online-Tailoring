@@ -82,20 +82,20 @@
                   <label for="">Colour</label>
                   <select name="monogram[color]" id="monograme_color" class="form-control">
                         <option value="0">Select colour</option>
-                        <option value="1">White</option>
-                        <option value="2" selected="">Light Yellow</option>
-                        <option value="3">Grey</option>
-                        <option value="4">Black</option>
-                        <option value="5">Light Blue</option>
-                        <option value="6">Blue</option>
-                        <option value="7">Navy</option>
-                        <option value="8">Pink</option>
-                        <option value="9">Purple</option>
-                        <option value="10">Red</option>
-                        <option value="11">Light Brown</option>
-                        <option value="12">Yellow</option>
-                        <option value="13">Green</option>
-                        <option value="14">Dark Grey</option>
+                        <option value="white">White</option>
+                        <option value="lightyellow" >Light Yellow</option>
+                        <option value="gray">Grey</option>
+                        <option value="black">Black</option>
+                        <option value="lightblue">Light Blue</option>
+                        <option value="blue">Blue</option>
+                        <option value="navy">Navy</option>
+                        <option value="pink">Pink</option>
+                        <option value="purple">Purple</option>
+                        <option value="red">Red</option>
+                        <option value="lightbrown">Light Brown</option>
+                        <option value="yellow">Yellow</option>
+                        <option value="green">Green</option>
+                        <option value="darkgray">Dark Grey</option>
                     </select>
                     
                 </div>
@@ -117,17 +117,46 @@
             <p>Add monogram to your custom clothing:</p>
 
             <div class="monogram_preview">
-
+                <div>
+                </div>
             </div>
         </div>
     </div>
 
  <script>
+
  //monogram
+
+ function updateMonogram(){
+     var $style = $('#monograme_style').val();
+     var $color = $('#monograme_color').val();
+     var $text  = $('#monogram_text').val();
+     var $el    = $('.monogram_preview div');
+     
+      if($style == 'script')
+      {
+          $el.css('font-style','italic');
+      }else{
+          $el.css('font-style','normal');            
+      }  
+
+      if($color)
+      {
+          $el.css('color',$color);
+      }else{
+          $el.css('color','white');            
+      }
+
+      $el.text($text)
+
+ }
  $('#monogram_text').keyup(function(){
-     var text = $(this).val();
-     $('.monogram_preview').text(text)
+    updateMonogram();
  });
+ $("#monograme_style,#monograme_color").change(function(){
+     updateMonogram();
+ });
+
 
  $("#tabSet li:eq(0) a").addClass('active');
  $("#tabSet li:eq(0)").click();
@@ -208,10 +237,17 @@ $('.scroller-left').click(function() {
 
  <style>
  
+ .monogram_preview div{
+    color:white;
+ }
  .monogram_preview{
      height: 60%;
      width: 100%;
      background-color: gray;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+    
  }
  .wrapper {
     position:relative;

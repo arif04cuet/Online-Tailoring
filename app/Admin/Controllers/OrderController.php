@@ -91,6 +91,7 @@ class OrderController extends Controller
             });
             
             $grid->style()->modal('Product Style');
+            $grid->monogram()->monogram_modal('Monogram');
 
             $grid->customer()->name('Customer Name');
             $grid->customer()->email('Email');

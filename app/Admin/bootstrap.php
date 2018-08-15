@@ -24,6 +24,8 @@ Encore\Admin\Form::forget(['map', 'editor']);
 use Encore\Admin\Grid\Column;
 use App\Admin\Extensions\Popover;
 use App\Admin\Extensions\Modal;
+use App\Admin\Extensions\MonogramModal;
 
 Column::extend('popover', Popover::class);
 Column::extend('modal', Modal::class);
+Column::extend('monogram_modal', MonogramModal::class);

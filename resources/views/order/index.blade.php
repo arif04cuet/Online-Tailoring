@@ -32,25 +32,33 @@
 
                     <li>
                         <hr>
-                        <div class="preview">
-                            <div>
-                                <b> Category and Style</b>
-                                <div class="category"></div>
+                        <div class="preview" style="height:675px;overflow-y:scroll">
+
+                             <div>
+                                <b> Order Preview</b>
                             </div>
-                            <div>
-                                
-                                <b>Fabric</b>
-                                <div class="fabric"></div>
-                            </div>
-                            <div>
-                                
-                                <b>Lining</b>
-                                <div class="lining"></div>
-                            </div>
+                            <hr>
 
                             <div>
+                               
+                                <div class="category"></div>
+                            </div>
+                            <hr>
+                            <div>
                                 
-                                <b>Styles</b>
+                               
+                                <div class="fabric"></div>
+                            </div>
+                            <hr>
+                            <div>
+                                
+                               
+                                <div class="lining"></div>
+                            </div>
+                            <hr>
+                            <div>
+                                
+                                
                                 <div class="styles"></div>
                             </div>
 

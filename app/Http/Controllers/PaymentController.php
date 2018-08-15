@@ -56,7 +56,7 @@ class PaymentController extends Controller
         //save order first
         $orderData = $request->all();
         $postCustomer = $orderData['customer'];
-    
+  
         // save customer   
         $customer = Customer::firstOrCreate(
             ['email'=>$postCustomer['email']],
@@ -72,6 +72,7 @@ class PaymentController extends Controller
         $order->fabric_id = $orderData['fabric'];
         $order->lining_id = $orderData['lining'];
         $order->style = serialize($orderData['style']); 
+        $order->monogram = serialize($orderData['monogram']);
         $order->message = $orderData['message'];
         $order->customer_id = $customer->id;
         $order->save();
