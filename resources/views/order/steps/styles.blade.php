@@ -2,7 +2,7 @@
  <div class="scroller scroller-left"><<</div>
  <div class="scroller scroller-right">>></div>
 
-<div class="row">
+<div class="container">
 
     <?php 
         $lis = '';
@@ -25,7 +25,7 @@
                         $pans .='
                                     <label class="labl d-table  zoom">
                                         <input class="style" type="radio" name="style['.$item->id.']" value="'.$image->id.'" '.$checked.'/>
-                                        <div data-tab="'.$item->id.'" class="product-box text-black d-table-cell align-middle text-center">
+                                        <div data-tab="'.$i.'" class="product-box text-black d-table-cell align-middle text-center">
                                             <img src="'. asset('uploads').'/'.$image->file .'" alt="" style="width:100%">
                                             '. $image->caption .'
                                         </div>
@@ -62,7 +62,7 @@
     </div>
 
     
-    <br><br><br><br>
+    <br><br><br>
 
     <div class="row">
         <div class="col-md-6">
@@ -237,7 +237,7 @@ $('.scroller-left').click(function() {
 
  <style>
  
- .pans{padding-top:15px;}
+ .pans{padding-top:30px;}
  .monogram_preview div{
     color:white;
  }
