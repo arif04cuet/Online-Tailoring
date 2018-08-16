@@ -18,7 +18,7 @@
                 ?>
 
                 @if ($item->images()->get())
-                    <?php $pans .='<div id="pan'.$i.'" class="pan hide">' ?>
+                    <?php $pans .='<div id="pan'.$i.'" class="pan hide row">' ?>
                     @foreach ($item->images()->get() as $image)
                         <?php $checked = ($m == 1)?' checked="checked"':''?>
                         <?php 
@@ -62,7 +62,7 @@
     </div>
 
     
-    <br><br>
+    <br><br><br><br>
 
     <div class="row">
         <div class="col-md-6">
@@ -237,6 +237,7 @@ $('.scroller-left').click(function() {
 
  <style>
  
+ .pans{padding-top:15px;}
  .monogram_preview div{
     color:white;
  }

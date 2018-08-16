@@ -46,19 +46,19 @@
                             <hr>
                             <div>
                                 
-                               
+                                Fabric
                                 <div class="fabric"></div>
                             </div>
                             <hr>
                             <div>
                                 
-                               
+                               Lining
                                 <div class="lining"></div>
                             </div>
                             <hr>
                             <div>
                                 
-                                
+                                Style
                                 <div class="styles"></div>
                             </div>
 
