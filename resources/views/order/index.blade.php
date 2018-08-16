@@ -32,7 +32,7 @@
 
                     <li>
                         <hr>
-                        <div class="preview" style="height:675px;overflow-y:scroll">
+                        <div class="preview" style="height:675px;overflow-y:scroll;display:none">
 
                              <div>
                                 <b> Order Preview</b>

@@ -17,6 +17,7 @@
                $("#nav-suit input[name=product][value=" + checked + "]").click();
            else
            $('#nav-suit .product-box:eq(0)').click();
+           
 
         });
 
@@ -39,7 +40,7 @@
         $('#steps [data-toggle="tab"]:eq(1)').click(function () {
             
             $('#fabrics [data-toggle="tab"]:eq(0)').click();
-            
+            $('.preview').show();
         });
 
         //filter fabrics
