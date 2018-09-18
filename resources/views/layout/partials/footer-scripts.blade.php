@@ -104,7 +104,7 @@
             var id = parseInt($(this).attr('data-tab'));
             id++;
             var tab = 'tab'+id;
-            
+            console.log(tab);
             $("ul.styles_subheadings_tabs").find('li#'+tab).click();
         });
 
@@ -118,7 +118,14 @@
 
         });
 
-       
+       // style next button to Confirm step
+
+        $('body').on('click','#nav-style button.next',function(){
+            $('#steps [data-toggle="tab"]:eq(2)').click();
+            
+        });
+
+
 
         $('#fabrics [data-toggle="tab"]').click(function (e) {
             $('#ajax_loader').show();
@@ -151,6 +158,7 @@
         $('body').on('click','#tabSet li',function(){
             tab = $(this).attr('id');
             pan = tab.replace('tab','pan');
+            
             $('.pans div').hide();
             $("#tabSet a").removeClass('active');
             $(this).find('a').addClass('active');

@@ -58,7 +58,7 @@
                                 
                                 
                                 
-                                <input type="submit" class="btn btn-primary" value="Send"/>
+                                <input type="submit" class="btn-send btn btn-primary" value="Send"/>
                               </form>
                         
                 </div>

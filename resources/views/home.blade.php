@@ -50,6 +50,13 @@
                     
                     
                 </div>
+                
+            
+             <div class="row">
+                  <div class="col text-justify-content">
+                  <h1 class="text-exlarge text-center"><a class="extrarnal-link" href="{{ url('page/instructions') }}"><strong>INSTRUCTIONS ON HOW TO USE OUR SYSTEM TO DESIGN YOUR OWN SUIT/TUX</strong></a></h1>
+                  </div>
+             </div>
              
         </div>
   

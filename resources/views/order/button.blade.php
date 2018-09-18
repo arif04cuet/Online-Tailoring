@@ -3,7 +3,7 @@
         <div class="col text-center">
                 <a href="{{ route('order')}}" class="btn btn-primary">Order Now!</a>
 
-                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                {{-- <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
                     <div class="paypal-donations">
                         <input type="hidden" name="cmd" value="_xclick">
                         <input type="hidden" name="business" value="lee-facilitator@lesdowntown.com">
@@ -16,7 +16,7 @@
                         <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" name="submit" alt="">
                         <img alt="" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
                     </div>
-                </form>
+                </form> --}}
 
 
         </div>

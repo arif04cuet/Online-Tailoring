@@ -30,44 +30,8 @@
                             <span class="badge badge-dark">3</span> Confirm</a>
                     </li>
 
-                    <li>
-                        <hr>
-                        <div class="preview" style="height:675px;overflow-y:scroll;display:none">
 
-                             <div>
-                                <b> Order Preview</b>
-                                <a href="{{ route('order')}}" class="float-right btn">Clear</a>
-                            </div>
-                            <hr>
-
-                            <div>
-                               
-                                <div class="category"></div>
-                            </div>
-                            <hr>
-                            <div>
-                                
-                                Fabric
-                                <div class="fabric"></div>
-                            </div>
-                            <hr>
-                            <div>
-                                
-                               Lining
-                                <div class="lining"></div>
-                            </div>
-                            <hr>
-                            <div>
-                                
-                                Style
-                                <div class="styles"></div>
-                            </div>
-
-
-                        </div>
-                    </li>
                 </ul>
-               
                 <?php $m = 1;?>
                 <div class="tab-content w-100 pl-md-5" id="right_tab_area">
                     <div class="tab-pane  show active" id="category" role="tabpanel">
@@ -210,8 +174,6 @@
 <br>
 
     <style>
-    .preview img{width: 100px!important;display: block}
-
 #nav-tabContent{min-height: 600px;}
 @media screen and (max-width: 768px) {
   .order {

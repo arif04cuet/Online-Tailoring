@@ -25,7 +25,7 @@
                         $pans .='
                                     <label class="labl d-table  zoom">
                                         <input class="style" type="radio" name="style['.$item->id.']" value="'.$image->id.'" '.$checked.'/>
-                                        <div data-tab="'.$item->id.'" class="product-box text-black d-table-cell align-middle text-center">
+                                        <div data-tab="'.$i.'" class="product-box text-black d-table-cell align-middle text-center">
                                             <img src="'. asset('uploads').'/'.$image->file .'" alt="" style="width:100%">
                                             '. $image->caption .'
                                         </div>
@@ -120,6 +120,12 @@
                 <div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <button class="nav-link btn btn-primary next">Next &gt;&gt;</button>
         </div>
     </div>
 
@@ -294,5 +300,7 @@ $('.scroller-left').click(function() {
 .scroller-left {
   float:left;
 }
-#styles_subheadings_content .pan label{float: left}
+#styles_subheadings_content .pan label{float: left;width: 191px}
+#styles_subheadings_content .pan{margin-top: 20px}
+
 </style>
