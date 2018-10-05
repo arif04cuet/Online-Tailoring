@@ -15,10 +15,12 @@
                 <?php 
                 $m=1;
                 $lis .='<li class="nav-item" id="tab'.$i.'"><a class="nav-link" data-toggle="tab" href="#">'.$item->name.'</a></li>'; 
+                
                 ?>
 
                 @if ($item->images()->get())
                     <?php $pans .='<div id="pan'.$i.'" class="pan hide row">' ?>
+                    <?php $pans .='<p class="style-text">'.$item->details.'</p>';?>
                     @foreach ($item->images()->get() as $image)
                         <?php $checked = ($m == 1)?' checked="checked"':''?>
                         <?php 
@@ -52,6 +54,7 @@
                 </div>
             <br><br>
             </div>
+           
                 <div class="pans row" id="styles_subheadings_content">
                         <?php echo $pans;?>      
                 </div>

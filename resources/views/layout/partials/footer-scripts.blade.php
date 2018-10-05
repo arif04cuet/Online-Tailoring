@@ -101,11 +101,37 @@
 
         //Style to Style
         $('body').on('click','#styles_subheadings_content label div',function(){
+
+         
+            var $radio = $(this).siblings('input');
+            $radio.attr('checked','checked');
+
+            if ($radio.attr('checked') == 'checked')
+            {
+                $(this).closest('.pan')
+                    .find('input[type=radio]').not($radio)
+                    .removeAttr('checked');
+            }
+
+            
             var id = parseInt($(this).attr('data-tab'));
+            if($("#tabSet").find('li').length == id)
+            {
+                console.log(id);
+                id++;
+                setStylesPreview('pan'+id);
+            }else{
             id++;
             var tab = 'tab'+id;
-            console.log(tab);
+
             $("ul.styles_subheadings_tabs").find('li#'+tab).click();
+            }
+
+        });
+
+        $('#styles_subheadings_content label').click(function()
+        {
+           
         });
 
         // Stop ajax reloading
@@ -163,6 +189,7 @@
             $("#tabSet a").removeClass('active');
             $(this).find('a').addClass('active');
             $('.pans #'+pan).show();
+            
             setStylesPreview(tab);
         });
 
@@ -216,19 +243,21 @@
         {
             var tab_no = tab.substr(tab.length - 1);
             var seletced_pan = parseInt(tab_no)-1;
+            console.log(seletced_pan);
             if(seletced_pan == 0)
                 return;
             //var pan+tab_no
+            
             $product = $('#pan'+seletced_pan+' input[class=style]:checked').parent().find('div.product-box').html();
             $tabLabel = $('#tab'+seletced_pan+' a').text();
-            $pan = '<div id="pan'+tab_no+'">'+$tabLabel+$product+'</div>';
+            $image = $tabLabel+$product;
+            $pan = '<div id="pan'+seletced_pan+'">'+$image+'</div>';
             
-            if($('.preview .styles #pan'+tab_no).length){
-                $('.preview .styles #pan'+tab_no).remove();
+            if($('.preview .styles #pan'+seletced_pan).length){
+                $('.preview .styles #pan'+seletced_pan).empty().append($image);
+            }else{
+                $('.preview .styles').append($pan);
             }
-
-            $('.preview .styles').append($pan);
-            
         }
 
         $("a[href='#fabrics']").on('shown.bs.tab', function(e) {
@@ -243,8 +272,8 @@
             setLiningPreview();
         });
 
-        $("ul.styles_subheadings_tabs .nav-item a").on('shown.bs.tab', function(e) {
-            
+        $("ul.styles_subheadings_tabs .nav-item").on('shown.bs.tab', function(e) {
+            console.log('okll');
         });
 
     });

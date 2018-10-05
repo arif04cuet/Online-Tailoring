@@ -22,7 +22,7 @@ return [
      */
     'route' => [
 
-        'prefix' => 'admin',
+        'prefix' => env('ADMIN_FREFIX', 'cityhallles_backoffice'),
 
         'namespace' => 'App\\Admin\\Controllers',
 
@@ -42,7 +42,7 @@ return [
     /*
      * Use `https`.
      */
-    'secure' => false,
+    'secure' => env('ENABLE_HTTPS', true),
 
     /*
      * Laravel-admin auth setting.

@@ -111,8 +111,9 @@ class StyleController extends Controller
     {
         return Admin::form(Style::class, function (Form $form) {
 
-            $form->multipleSelect('products')->options(Product::where('is_complex',0)->pluck('name', 'id'))->placeholder('Products Mapping')->rules('required');
+            $form->multipleSelect('products')->options(Product::where('is_complex', 0)->pluck('name', 'id'))->placeholder('Products Mapping')->rules('required');
             $form->text('name', 'Style Name')->rules('required');
+            $form->textarea('details', 'Style Details');
             $form->hasMany('images', 'Upload Styles', function (Form\NestedForm $form) {
                 $form->image('file', 'Image')->uniqueName()->move('uploads/style/');
                 $form->text('caption');
