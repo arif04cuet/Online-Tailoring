@@ -8,6 +8,9 @@
     $(document).ready(function () {
 
         
+        //product preview update
+        
+ 
         //Step 1
          $('#nav-suit .product-box:eq(0)').click();
          $('#suit-tuxedo [data-toggle="tab"]:eq(0)').click(function () {
@@ -137,8 +140,8 @@
         // Stop ajax reloading
         $('#fabric-lining-style a[data-toggle="tab"]').click(function(){
             var ref = $(this).attr('href').replace('#', '');
+            
             if ($('#' + ref+'>div').length) {
-                
                return false;
             }
 
@@ -154,7 +157,7 @@
 
 
         $('#fabrics [data-toggle="tab"]').click(function (e) {
-            $('#ajax_loader').show();
+            
             
             var $this = $(this),
                 targ = $this.attr('href');
@@ -162,8 +165,9 @@
 
             loadurl = 'order/' + product_id + '/' + $this.attr('data-url');
             
-            if(!$(''+targ+'>div').length || 1)
+            if(!$(''+targ+'>div').length)
             {
+                $('#ajax_loader').show();
                 $.get(loadurl, function (data) {
                     $(targ).html(data.html);
                     $('#ajax_loader').hide();
@@ -217,24 +221,71 @@
 
         //functions
 
+        //product preview clear
+        $('body').on('click','.preview .clear',function(){
+            
+            $(this).parent().empty();
+            value = $(this).attr('href');
+            openTab(value);
+            return false;
+        });
+
+        
+        function openTab(selector)
+        {
+            $tabs = selector.split('|');
+            $('#steps [data-toggle="tab"]:eq('+$tabs[0]+')').click();
+
+            if($tabs[0] == 1)
+                $('#'+$tabs[1]).click();
+            
+            if($tabs[2])
+            {
+                $('#tabSet #tab'+$tabs[2]+' a').click();
+            }
+
+            console.log($tabs);
+        }
+        function getClearLink(tabSerial)
+        {
+            // clear link generation
+            return '<a class="clear" href="'+$tabSerial+'">X</a>';
+        }
+
         function setCategoryPreview()
         {
+            
             $el = $("#suit-tuxedo").find("a.active");
             $id = $el.attr('href');
+            
+            // clear link generation
+            $tabSerial = '0';
+           
+
+            $clearLink = getClearLink($tabSerial);        
+
             $tabName = $el.text();
-            $product = $($id+' input[name=product]:checked').parent().find('div.product-box').html();
+            $product = $($id+' input[name=product]:checked').parent().find('div.product-box').html() +' ( '+ $clearLink +' )';
             $('.preview .category').empty().html($tabName + ' - '+$product);
             
         }
 
         function setFabricPreview()
         {
-            $product = $('#nav-fabric input[name=fabric]:checked').parent().find('div.product-box').html();
+
+            // clear link generation
+            $tabSerial = '1|nav-fabric-tab';
+            $clearLink = getClearLink($tabSerial);
+
+            $product = $('#nav-fabric input[name=fabric]:checked').parent().find('div.product-box').html()+' ( '+ $clearLink +' )';
             $('.preview .fabric').empty().html($product);
         }
         function setLiningPreview()
         {
-            $product = $('#nav-lining input[name=lining]:checked').parent().find('div.product-box').html();
+            $tabSerial = '1|nav-lining-tab';
+            $clearLink = getClearLink($tabSerial);
+
+            $product = $('#nav-lining input[name=lining]:checked').parent().find('div.product-box').html()+' ( '+ $clearLink +' )';
             $('.preview .lining').empty().html($product);
 
         }
@@ -246,11 +297,16 @@
             console.log(seletced_pan);
             if(seletced_pan == 0)
                 return;
+
+            // clear link generation
+            $tabSerial = '1|nav-style-tab|'+seletced_pan;
+            $clearLink = getClearLink($tabSerial);
+
             //var pan+tab_no
-            
+          
             $product = $('#pan'+seletced_pan+' input[class=style]:checked').parent().find('div.product-box').html();
             $tabLabel = $('#tab'+seletced_pan+' a').text();
-            $image = $tabLabel+$product;
+            $image = $tabLabel+$product+' ( '+ $clearLink +' )';
             $pan = '<div id="pan'+seletced_pan+'">'+$image+'</div>';
             
             if($('.preview .styles #pan'+seletced_pan).length){
