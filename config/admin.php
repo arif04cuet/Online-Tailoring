@@ -22,7 +22,7 @@ return [
      */
     'route' => [
 
-        'prefix' => env('ADMIN_FREFIX', 'cityhallles_backoffice'),
+        'prefix' => env('ADMIN_PREFIX', 'cityhallles_backoffice'),
 
         'namespace' => 'App\\Admin\\Controllers',
 
