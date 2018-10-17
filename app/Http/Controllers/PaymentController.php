@@ -24,6 +24,7 @@ use App\Mail\OrderEmail;
 use App\Customer;
 use App\Order;
 use App\Invoice;
+use App\Mail\OrderEmailCustomer;
 
 
 class PaymentController extends Controller
@@ -41,8 +42,8 @@ class PaymentController extends Controller
         $paypal_conf = \Config::get('paypal');
         $this->_api_context = new ApiContext(new OAuthTokenCredential(
             $paypal_conf['client_id'],
-            $paypal_conf['secret'])
-        );
+            $paypal_conf['secret']
+        ));
         $this->_api_context->setConfig($paypal_conf['settings']);
 
     }
@@ -59,19 +60,19 @@ class PaymentController extends Controller
   
         // save customer   
         $customer = Customer::firstOrCreate(
-            ['email'=>$postCustomer['email']],
+            ['email' => $postCustomer['email']],
             [
-                'name'=>$postCustomer['name'],
-                'mobile'=>$postCustomer['phone']
+                'name' => $postCustomer['name'],
+                'mobile' => $postCustomer['phone']
             ]
         );
 
         //save Order
         $order = new Order();
-        $order->product_id =$orderData['product'];
+        $order->product_id = $orderData['product'];
         $order->fabric_id = $orderData['fabric'];
         $order->lining_id = $orderData['lining'];
-        $order->style = serialize($orderData['style']); 
+        $order->style = serialize($orderData['style']);
         $order->monogram = serialize($orderData['monogram']);
         $order->message = $orderData['message'];
         $order->customer_id = $customer->id;
@@ -85,10 +86,12 @@ class PaymentController extends Controller
 
         $item_1 = new Item();
 
-        $item_1->setName('Cityhallles Order') /** item name **/
+        $item_1->setName('Cityhallles Order')
+        /** item name **/
             ->setCurrency('USD')
             ->setQuantity(1)
-            ->setPrice($deductAmount); /** unit price **/
+            ->setPrice($deductAmount);
+        /** unit price **/
 
         $item_list = new ItemList();
         $item_list->setItems(array($item_1));
@@ -103,7 +106,8 @@ class PaymentController extends Controller
             ->setDescription('Your transaction description');
 
         $redirect_urls = new RedirectUrls();
-        $redirect_urls->setReturnUrl(URL::to('status')) /** Specify return URL **/
+        $redirect_urls->setReturnUrl(URL::to('status'))
+        /** Specify return URL **/
             ->setCancelUrl(URL::to('status'));
 
         $payment = new Payment();
@@ -187,17 +191,23 @@ class PaymentController extends Controller
         if ($result->getState() == 'approved') {
 
              //update invoice
-             $invoice = Invoice::where('recurring_id',$payment_id)->first();
-             $invoice->payment_status = 'Completed';
-             $invoice->save();
+            $invoice = Invoice::where('recurring_id', $payment_id)->first();
+            $invoice->payment_status = 'Completed';
+            $invoice->save();
 
-            //send mail
+            $order = $invoice->order;
+            //send mail to admin
             $admin_email = env('MAIL_ADMIN_ADDRESS');
-            Mail::to($admin_email)->send(new OrderEmail($invoice->order));
+            Mail::to($admin_email)->send(new OrderEmail($order));
+
+            //send mail to customer
+            $to = $order->customer->email;
+            Mail::to($to)->send(new OrderEmailCustomer($order));
+
 
             $deductAmount = \Config::get('paypal.deduct_amount');
-            $msg = "Your order ( #$invoice->id ) has been placed successfully! and $".$deductAmount." has been paid!";
-            return redirect('/')->with('success',$msg);
+            $msg = "Your order ( #$invoice->id ) has been placed successfully! and $" . $deductAmount . " has been paid!";
+            return redirect('/')->with('success', $msg);
         }
 
         return redirect('/');

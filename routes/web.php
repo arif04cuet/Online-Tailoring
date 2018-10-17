@@ -1,5 +1,8 @@
 <?php
 use Illuminate\Support\Facades\Mail;
+use App\Invoice;
+use App\Mail\OrderEmailCustomer;
+use App\Order;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,9 +19,10 @@ Route::get('/', function () {
 });
 
 Route::any('/order_receipt', function (\Illuminate\Http\Request $request) {
-    echo '<pre>';
-    print_r($request->all());
-    exit;
+
+    $order = Order::find(16);
+    return new OrderEmailCustomer($order);
+
 });
 
 // route for processing payment
@@ -33,7 +37,7 @@ Route::post('/contact-us', function (\Illuminate\Http\Request $request) {
     $admin_email = env('MAIL_ADMIN_ADDRESS');
     Mail::to($admin_email)->send(new App\Mail\ContactEmail($request->all()));
     //redirect
-    return redirect()->back()->with('success', 'Thanks for contacting with us!'); 
+    return redirect()->back()->with('success', 'Thanks for contacting with us!');
 
 })->name('contact-us-post');
 

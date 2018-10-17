@@ -122,7 +122,7 @@
             {
                 console.log(id);
                 id++;
-                setStylesPreview('pan'+id);
+                setStylesPreview('tab'+id);
             }else{
             id++;
             var tab = 'tab'+id;
@@ -292,7 +292,7 @@
 
          function setStylesPreview(tab)
         {
-            var tab_no = tab.substr(tab.length - 1);
+            var tab_no = tab.replace("tab","");
             var seletced_pan = parseInt(tab_no)-1;
             console.log(seletced_pan);
             if(seletced_pan == 0)

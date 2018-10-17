@@ -9,19 +9,23 @@ use App\Style;
 
 class Modal extends AbstractDisplayer
 {
-    public function display($text = 'Details')
-    {
-        $modalId = 'modal_'.rand(50,100);
-        $value = '';
-        $styles = unserialize($this->value);
+  public function display($text = 'Details')
+  {
+    $modalId = 'modal_' . rand(50, 100);
+    $value = '';
+    $styles = unserialize($this->value);
 
-        foreach($styles as $key=>$image_id){
+    foreach ($styles as $key => $image_id) {
 
-            $image = Image::find($image_id);
-            $style = $image->style;
-            $value .= '<tr><td>'.$style->name.'</td><td>'.$image->caption.'<br/><img width="100" src="/uploads/'.$image->file.'"/></td></tr>';
-        }
-        return <<<EOT
+      $image = Image::find($image_id);
+      $style = $image->style;
+      $stylename = isset($style->name) ? $style->name : '';
+      $imagecaption = isset($image->caption) ? $image->caption : '';
+      $imagefile = isset($image->file) ? $image->file : '';
+
+      $value .= '<tr><td>' . $stylename . '</td><td>' . $imagecaption . '<br/><img width="100" src="/uploads/' . $imagefile . '"/></td></tr>';
+    }
+    return <<<EOT
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{$modalId}">
 Show
@@ -51,5 +55,5 @@ Show
 
 EOT;
 
-    }
+  }
 }
